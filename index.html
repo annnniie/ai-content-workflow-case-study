@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="许泓景的 AI 应用实践：从重复内容生产到可审核、可迭代的工作流。包含业务拆解、人机分工、真实迭代与代表作品成果。">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <title>许泓景 · AI 内容工作流案例</title>
+  <style>
+    :root{--paper:#f6f7f2;--ink:#20352e;--muted:#586b61;--green:#235e49;--light:#e8eee5;--line:#d9e0d5;--white:#fff;--warm:#f6ece1;--ochre:#835832;--radius:22px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    a,button,summary{-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #a66d35;outline-offset:5px}
+    ::selection{background:#d8e8ce}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+    .skip{position:fixed;top:-100px;left:20px;z-index:10;background:white;padding:12px}
+    .skip:focus{top:12px}
+    header{position:sticky;top:0;background:rgba(246,247,242,.96);backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:24px}
+    .identity{display:flex;align-items:center;gap:12px}
+    .monogram{width:36px;height:36px;border:1px solid #b9c7b7;border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-size:14px;letter-spacing:-1px}
+    .name{font-size:15px;font-weight:650;letter-spacing:.06em}
+    .name small{display:block;font-size:10px;font-weight:400;letter-spacing:.12em;line-height:1.4;color:var(--muted)}
+    nav{display:flex;gap:28px;font-size:13px;color:var(--muted)}
+    nav a{padding:8px 0}
+    nav a:hover{color:var(--green)}
+    .hero{padding:74px 0 55px}
+    .eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:.19em;color:var(--green);font-weight:650;display:flex;align-items:center;gap:10px}
+    .eyebrow:before{content:"";display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%}
+    .hero-grid{display:grid;grid-template-columns:1.13fr 1fr;gap:56px;align-items:center;margin-top:27px}
+    h1,h2,h3,p{margin:0}
+    h1{font-size:clamp(32px,3.6vw,46px);font-weight:650;line-height:1.4;letter-spacing:-.055em}
+    h1 span{color:var(--green)}
+    .lead{font-size:15px;line-height:1.95;color:var(--muted);max-width:450px;margin-top:23px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:23px}
+    .tag{font-size:11px;line-height:1.5;border:1px solid var(--line);border-radius:30px;padding:6px 11px;color:var(--muted)}
+    .hero-actions{display:flex;gap:20px;align-items:center;margin-top:30px;font-size:13px}
+    .primary{background:var(--green);color:#fff;border-radius:30px;padding:11px 20px;display:inline-flex;gap:24px;align-items:center}
+    .text-link{border-bottom:1px solid #a6b7a3;padding:7px 0}
+    .canvas{background:#fff;border:1px solid var(--line);border-radius:26px;padding:27px;box-shadow:0 12px 38px rgba(37,65,45,.035)}
+    .canvas-head{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.1em;color:var(--muted);padding-bottom:20px}
+    .live-label{font-size:10px;letter-spacing:0;background:var(--light);color:var(--green);padding:3px 9px;border-radius:20px}
+    .message{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:15px;font-size:13px;line-height:1.7}
+    .message small{font-size:10px;color:var(--muted);display:block;margin-bottom:5px;letter-spacing:.05em}
+    .connector{width:1px;height:21px;background:#bdcdbc;margin:0 auto}
+    .engine{padding:17px 16px;background:#f0f5ed;border:1px solid #cbdcc3;border-radius:15px}
+    .engine-title{font-size:13px;font-weight:650;display:flex;justify-content:space-between;align-items:center}
+    .engine-title span{font-size:10px;font-weight:400;color:var(--muted)}
+    .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+    .tools span{background:rgba(255,255,255,.8);font-size:11px;text-align:center;padding:8px 2px;border-radius:7px;color:var(--green)}
+    .review-gate{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px dashed #baa081;background:#fdf9f3;border-radius:13px;font-size:12px}
+    .gate-icon{flex-shrink:0;width:27px;height:27px;border:1px solid #cdbda7;border-radius:50%;display:grid;place-items:center;color:var(--ochre);font-size:15px}
+    .review-gate small{display:block;font-size:10px;color:var(--muted)}
+    .figure-note{font-size:10px;text-align:center;color:var(--muted);margin-top:17px}
+    .factbar{display:grid;grid-template-columns:1fr 1.2fr 1.25fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px;padding:22px 0;gap:30px}
+    .factbar dt{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:5px}
+    .factbar dd{margin:0;font-size:13px}
+    section{padding:52px 0;border-bottom:1px solid var(--line)}
+    .section-top{display:flex;align-items:baseline;gap:15px;margin-bottom:26px}
+    .section-index{font-family:Georgia,serif;color:#798c77;font-size:15px}
+    h2{font-size:27px;line-height:1.4;font-weight:600;letter-spacing:-.035em}
+    .section-sub{font-size:14px;color:var(--muted);margin-top:-12px;margin-bottom:27px;max-width:720px}
+    .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+    .problem-copy{font-size:15px;color:var(--muted)}
+    .problem-copy p+p{margin-top:17px}
+    .pullquote{font-size:21px;line-height:1.8;font-weight:500;letter-spacing:-.025em;border-left:2px solid #8eaa80;padding:2px 0 2px 25px;margin-top:26px}
+    .split-card{background:var(--light);border-radius:var(--radius);padding:27px 30px}
+    .split-card h3{font-size:14px;font-weight:600}
+    .responsibility{display:grid;grid-template-columns:70px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid #ced9c8;font-size:13px}
+    .responsibility:last-child{border:0;padding-bottom:0}
+    .responsibility strong{font-weight:600;color:var(--green)}
+    .responsibility p{color:var(--muted)}
+    .mode-tabs{display:inline-flex;gap:4px;background:var(--light);padding:5px;border-radius:30px;margin-bottom:24px}
+    .mode-tabs button{border:0;background:transparent;color:var(--muted);padding:9px 20px;border-radius:30px;cursor:pointer;font-size:13px}
+    .mode-tabs button[aria-selected="true"]{background:white;color:var(--green);box-shadow:0 1px 5px #23392a0d}
+    .flow-panel[hidden]{display:none}
+    .flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .step{background:white;border:1px solid var(--line);border-radius:16px;padding:22px 19px;position:relative}
+    .step:last-child{background:#edf3e8;border-color:#c7d7bd}
+    .step-num{font-family:Georgia,serif;font-size:12px;color:#7e9279;margin-bottom:15px}
+    .step h3{font-size:15px;font-weight:600}
+    .step p{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.8}
+    .flow-note{font-size:12px;color:var(--muted);margin-top:18px}
+    .flow-note strong{color:var(--green);font-weight:600}
+    .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .case-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:29px}
+    .case-label{color:var(--green);font-size:10px;letter-spacing:.13em;margin-bottom:12px}
+    .case-card h3{font-size:21px;line-height:1.5;font-weight:600;letter-spacing:-.025em}
+    .case-intro{font-size:13px;color:var(--muted);margin-top:12px}
+    .mini-row{display:grid;grid-template-columns:38px 1fr;gap:12px;margin-top:24px;font-size:13px}
+    .mini-row .row-label{font-size:11px;color:var(--muted);padding-top:2px}
+    .mini-row + .mini-row{margin-top:13px}
+    .case-result{background:var(--paper);padding:15px 17px;border-radius:12px;margin-top:23px}
+    .case-result strong{font-size:12px;font-weight:600}
+    .case-result p{font-size:12px;color:var(--muted);margin-top:4px}
+    .annotation{font-size:11px;color:var(--muted);margin-top:14px;line-height:1.8}
+    .results{background:var(--green);border-radius:var(--radius);padding:30px;color:#fff;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:20px}
+    .metric{padding-left:24px;border-left:1px solid #ffffff32}
+    .metric:first-child{padding-left:0;border:0}
+    .metric dt{font-size:11px;color:#d4e3d9;margin-bottom:10px}
+    .metric dd{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:43px;line-height:1.2;letter-spacing:-.045em}
+    .metric dd span{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-size:18px;margin-left:5px;letter-spacing:0}
+    .metric p{font-size:11px;color:#d4e3d9;margin-top:10px}
+    .result-note{font-size:12px;color:var(--muted);margin:16px 0 22px;line-height:1.9}
+    details{border:1px solid var(--line);border-radius:16px;background:white}
+    summary{cursor:pointer;list-style:none;padding:17px 21px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;gap:12px}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-size:20px;font-weight:300;color:var(--green)}
+    details[open] summary:after{content:"−"}
+    .evidence-grid{padding:0 21px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .evidence{margin:0;border:1px solid var(--line);border-radius:11px;padding:13px;background:#fafbf8}
+    .evidence figcaption{font-size:11px;color:var(--muted);margin-bottom:10px}
+    .evidence img{display:block;width:100%;max-width:170px;height:44px;object-fit:contain;object-position:left center;background:white}
+    .evidence-note{grid-column:1/-1;font-size:11px;color:var(--muted);line-height:1.9}
+    .contribution-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:27px}
+    .contribution{border-top:2px solid #aabc9f;padding-top:18px}
+    .contribution .label{font-size:11px;color:var(--muted);margin-bottom:8px}
+    .contribution h3{font-size:17px;font-weight:600;margin-bottom:9px}
+    .contribution p{font-size:13px;color:var(--muted)}
+    .reflection{margin-top:30px;background:var(--warm);border-radius:16px;padding:22px 26px}
+    .reflection h3{font-size:13px;font-weight:600;color:var(--ochre)}
+    .reflection p{font-size:13px;color:#6d604f;margin-top:7px}
+    .scope-note{font-size:12px;color:var(--muted);margin-top:22px}
+    footer{padding:33px 0 39px}
+    .footer-top{display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .signature{font-family:Georgia,serif;font-size:20px;font-style:italic}
+    .print{border:1px solid #becbb7;border-radius:24px;background:transparent;color:var(--green);padding:8px 17px;font-size:12px;cursor:pointer}
+    .privacy{font-size:11px;line-height:1.9;color:var(--muted);margin-top:17px;max-width:850px}
+    .footer-meta{margin-top:18px;display:flex;gap:20px;font-size:10px;color:#6b7c68;letter-spacing:.06em}
+    @media(min-width:1440px){.wrap{max-width:1200px}.hero{padding-top:90px}.hero-grid{gap:70px}}
+    @media(max-width:850px){.wrap{padding:0 26px}.hero-grid{gap:30px;grid-template-columns:1fr 1fr}h1{font-size:35px}.canvas{padding:20px}.case-card{padding:23px}.flow-steps{grid-template-columns:repeat(2,1fr)}.evidence-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){
+      .wrap{padding:0 22px}.nav{min-height:74px;gap:15px}nav{gap:16px;font-size:11px}nav a:first-child{display:none}
+      .name{font-size:13px}.name small{font-size:9px}.monogram{width:30px;height:30px;font-size:12px}
+      .hero{padding:38px 0 26px}.hero-grid{grid-template-columns:1fr;gap:32px;margin-top:20px}h1{font-size:38px;line-height:1.38}
+      .lead{font-size:14px}.hero-actions{margin-top:23px}.canvas{padding:23px}.factbar{grid-template-columns:1fr;gap:13px;margin-top:29px;padding:19px 0}
+      .factbar div{display:grid;grid-template-columns:80px 1fr;gap:10px}.factbar dt{margin:0;padding-top:2px}.factbar dd{font-size:12px}
+      section{padding:34px 0}.section-top{gap:11px;margin-bottom:22px}h2{font-size:25px}.section-sub{font-size:13px}
+      .problem-grid,.case-grid{grid-template-columns:1fr;gap:23px}.problem-copy{font-size:14px}.pullquote{font-size:20px;margin-top:20px}
+      .split-card{padding:23px}.step{padding:18px 15px}.step-num{margin-bottom:10px}.flow-steps{gap:10px}
+      .mode-tabs button{font-size:12px;padding:8px 17px}.case-card{padding:24px}.results{padding:23px 19px;gap:12px}.metric{padding-left:13px}.metric dd{font-size:32px}.metric dd span{font-size:13px;margin-left:2px}.metric dt,.metric p{font-size:10px}
+      .contribution-grid{grid-template-columns:1fr;gap:24px}.contribution{padding-top:13px}.contribution .label{margin-bottom:5px}
+      .reflection{padding:20px}.evidence-grid{padding:0 16px 16px;gap:9px}.evidence{padding:10px}.footer-meta{flex-wrap:wrap;gap:8px 18px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{
+      @page{size:A4;margin:14mm}
+      body{background:#fff;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      header{position:static;background:white}.wrap{max-width:none;padding:0}.nav{min-height:52px}nav,.hero-actions,.mode-tabs,.print,.skip{display:none}
+      .hero{padding:25px 0}.hero-grid{gap:26px;margin-top:15px}h1{font-size:30px}.lead{font-size:12px}.canvas{box-shadow:none;padding:18px}
+      section{padding:24px 0}h2{font-size:23px}.section-sub{font-size:12px}.flow-panel[hidden]{display:block}.flow-panel+.flow-panel{margin-top:15px}.flow-steps{grid-template-columns:repeat(4,1fr)}
+      .case-card,.split-card,.results,.contribution,.reflection,.canvas{break-inside:avoid}.case-card{padding:19px}.case-card h3{font-size:18px}
+      .factbar{margin-top:25px;padding:16px 0}.results{padding:24px}.metric dd{font-size:32px}.evidence-grid{display:grid!important}
+      details{break-inside:avoid}summary:after{display:none}footer{padding-bottom:0}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳转至正文</a>
+  <header>
+    <div class="wrap nav">
+      <a class="identity" href="#main" aria-label="许泓景，回到页面顶部">
+        <span class="monogram" aria-hidden="true">HX</span>
+        <span class="name">许泓景<small>HONGJING XU</small></span>
+      </a>
+      <nav aria-label="页面导航">
+        <a href="#context">项目</a>
+        <a href="#workflow">工作流</a>
+        <a href="#iterations">迭代</a>
+        <a href="#outcomes">成果</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <div class="hero">
+      <div class="eyebrow">AI application · Selected case study</div>
+      <div class="hero-grid">
+        <div>
+          <h1>让 AI 处理重复，<br><span>让人负责判断。</span></h1>
+          <p class="lead">一个面向健康科普内容团队的 AI 工作流实践。<br>从选题与素材，到可审阅的公众号草稿：<br>把零散的工具使用，组织成可执行、可迭代的流程。</p>
+          <div class="tags"><span class="tag">业务需求拆解</span><span class="tag">人机协作</span><span class="tag">AI 产品运营</span></div>
+          <div class="hero-actions"><a class="primary" href="#outcomes">查看项目成果 <span aria-hidden="true">↗</span></a><a class="text-link" href="#contribution">我的贡献</a></div>
+        </div>
+        <figure class="canvas" style="margin:0" aria-label="工作流逻辑示意，不是实际产品截图">
+          <div class="canvas-head"><span>CONTENT WORKSPACE</span><span class="live-label">人审优先</span></div>
+          <div class="message"><small>编辑 · 从飞书发起任务</small>基于这份研究素材起草内容，<br>沿用既有模板，保存到草稿箱。</div>
+          <div class="connector"></div>
+          <div class="engine"><div class="engine-title">Bridge → 模型与执行工具<span>任务处理</span></div><div class="tools"><span>整理素材</span><span>生成草稿</span><span>模板排版</span></div></div>
+          <div class="connector"></div>
+          <div class="review-gate"><span class="gate-icon" aria-hidden="true">✓</span><div>保存草稿，交给人审核<small>编辑初审 → 第二位审核人 → 发布决策</small></div></div>
+          <figcaption class="figure-note">逻辑示意 · 非运行截图 · 自动执行止于草稿</figcaption>
+        </figure>
+      </div>
+      <dl class="factbar">
+        <div><dt>Context / 场景</dt><dd>健康科普公众号 · 企业匿名</dd></div>
+        <div><dt>Focus / 个人工作</dt><dd>需求设计、规范制定与迭代验收</dd></div>
+        <div><dt>Delivery / 产物</dt><dd>可审阅草稿、修正报告与格式规则</dd></div>
+      </dl>
+    </div>
+
+    <section id="context">
+      <div class="section-top"><span class="section-index">01</span><h2>问题不在“写不出来”，而在重复。</h2></div>
+      <div class="problem-grid">
+        <div class="problem-copy">
+          <p>内容生产需要在热点工具、文献资料、AI 对话框和公众号编辑器之间来回切换。素材处理、文章起草和固定排版反复占用编辑时间。</p>
+          <p>但效率不是唯一目标。选题是否值得做、证据能否支持结论、表达是否适当、文章能否发布，仍然需要人来判断。</p>
+          <div class="pullquote">不是把编辑拿掉，<br>而是把编辑的时间还给判断。</div>
+        </div>
+        <div class="split-card">
+          <h3>先划清人和 AI 的分工</h3>
+          <div class="responsibility"><strong>AI 辅助</strong><p>检索与整理资料、生成草稿、执行固定模板排版、提出审校建议。</p></div>
+          <div class="responsibility"><strong>人来决定</strong><p>内容方向、来源取舍、事实核验、品牌表达，以及最终发布。</p></div>
+          <div class="responsibility"><strong>交接位置</strong><p>草稿箱，而不是直接发布。流程保留两轮人工校对。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="section-top"><span class="section-index">02</span><h2>两种输入，同一个审核出口。</h2></div>
+      <p class="section-sub">飞书是交互入口，自定义 Bridge 连接模型与任务执行层。根据手头材料，选择合适的起点。</p>
+      <div class="mode-tabs" role="tablist" aria-label="任务输入模式">
+        <button type="button" role="tab" id="tab-topic" aria-selected="true" aria-controls="panel-topic">从一个主题开始</button>
+        <button type="button" role="tab" id="tab-source" aria-selected="false" aria-controls="panel-source" tabindex="-1">从一份文献开始</button>
+      </div>
+      <div class="flow-panel" id="panel-topic" role="tabpanel" aria-labelledby="tab-topic">
+        <div class="flow-steps">
+          <div class="step"><div class="step-num">01 / INPUT</div><h3>确认主题</h3><p>编辑确定方向，在飞书中输入主题与目标读者。</p></div>
+          <div class="step"><div class="step-num">02 / RESEARCH</div><h3>寻找候选素材</h3><p>系统检索与整理资料，来源和论据需人工核验。</p></div>
+          <div class="step"><div class="step-num">03 / PRODUCTION</div><h3>生成与排版</h3><p>根据写作规范生成内容，沿用指定模板保存草稿。</p></div>
+          <div class="step"><div class="step-num">04 / HUMAN REVIEW</div><h3>双重人工审核</h3><p>检查事实与表达，必要时返工，通过后安排发布。</p></div>
+        </div>
+      </div>
+      <div class="flow-panel" id="panel-source" role="tabpanel" aria-labelledby="tab-source" hidden>
+        <div class="flow-steps">
+          <div class="step"><div class="step-num">01 / INPUT</div><h3>提供研究材料</h3><p>编辑提供选定文献或素材，并说明读者与任务要求。</p></div>
+          <div class="step"><div class="step-num">02 / SYNTHESIS</div><h3>围绕证据组织内容</h3><p>基于输入材料起草，不把研究边界之外的推断当成结论。</p></div>
+          <div class="step"><div class="step-num">03 / PRODUCTION</div><h3>生成与排版</h3><p>匹配受众表达与既有格式，保存到公众号草稿箱。</p></div>
+          <div class="step"><div class="step-num">04 / HUMAN REVIEW</div><h3>双重人工审核</h3><p>回看原始来源、审阅成稿，再由人决定是否发布。</p></div>
+        </div>
+      </div>
+      <p class="flow-note"><strong>同一个原则：</strong>生成完成不等于审核通过。以上为本人实际使用流程的概括，不代表所有处理步骤均由 Bridge 本身实现。</p>
+    </section>
+
+    <section id="iterations">
+      <div class="section-top"><span class="section-index">03</span><h2>真正的产品工作，发生在反馈之后。</h2></div>
+      <p class="section-sub">两个来自实际工作对话的迭代案例。内容经匿名整理，不展示内部聊天、配置或客户资料。</p>
+      <div class="case-grid">
+        <article class="case-card">
+          <div class="case-label">CASE A / 输入与交付</div>
+          <h3>让“审稿”变成<br>编辑能直接使用的交付。</h3>
+          <p class="case-intro">系统初版偏重资料提取和脚本说明，而业务用户真正需要的是：哪里有问题、为什么，以及怎么改。</p>
+          <div class="mini-row"><span class="row-label">我提出</span><p>直接输入文案，逐句检查；返回修正报告和完整改正稿，而不是让用户理解技术操作。</p></div>
+          <div class="mini-row"><span class="row-label">我测试</span><p>使用真实长稿检验输出，并继续提出精修与交付要求。</p></div>
+          <div class="case-result"><strong>可见结果</strong><p>对话中形成了修正报告、改正稿和精修稿。其中，误列为“用户反馈”的名人引言被指出并移除。</p></div>
+          <p class="annotation">这是单次可观察的改动，不代表系统能自动保证整篇事实准确或合规。</p>
+        </article>
+        <article class="case-card">
+          <div class="case-label">CASE B / 格式验收</div>
+          <h3>“风格接近”，<br>不等于“格式正确”。</h3>
+          <p class="case-intro">沿用已有稿件，意味着遵循参考 HTML 结构，而不是重新生成一个看起来相似的模板。</p>
+          <div class="mini-row"><span class="row-label">我验收</span><p>确认合格 HTML 版本后，要求把这次正确做法写入后续可复用的 Skill。</p></div>
+          <div class="mini-row"><span class="row-label">规则化</span><p>复用参考稿骨架与固定尾部，不擅自新增标题块或不一致的排版结构。</p></div>
+          <div class="case-result"><strong>可见结果</strong><p>对话显示文件交付与本人验收，系统回报更新了格式规则和实践记录。</p></div>
+          <p class="annotation">这是工作流规则更新，不是模型训练；后续复用的通过率尚未测量。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="outcomes">
+      <div class="section-top"><span class="section-index">04</span><h2>从工作流，走到实际发布。</h2></div>
+      <p class="section-sub">以下四篇代表作品均使用当时的 AI 工作流，经人工审核后发布。文章和账号名称已隐藏。</p>
+      <dl class="results">
+        <div class="metric"><dt>代表作品 · A / B</dt><dd>10万+<span>× 2</span></dd><p>两篇平台显示阅读量</p></div>
+        <div class="metric"><dt>代表作品 · C</dt><dd>5.7<span>万</span></dd><p>一篇平台显示阅读量</p></div>
+        <div class="metric"><dt>代表作品 · D</dt><dd>5<span>万</span></dd><p>一篇平台显示阅读量</p></div>
+      </dl>
+      <p class="result-note">数据来自本人提供的已发布文章列表，保留平台原始显示口径。这是精选内容成果，不是全量平均表现、去重读者数，也不意味着阅读增长可以单独归因于 AI。</p>
+      <details id="evidence">
+        <summary>查看阅读量截图局部与数据说明</summary>
+        <div class="evidence-grid">
+          <figure class="evidence"><figcaption>作品 A · 原图局部</figcaption><img src="assets/readership-a.png" alt="作品A，原截图显示阅读10万+" width="170" height="44" loading="lazy"></figure>
+          <figure class="evidence"><figcaption>作品 B · 原图局部</figcaption><img src="assets/readership-b.png" alt="作品B，原截图显示阅读10万+" width="170" height="44" loading="lazy"></figure>
+          <figure class="evidence"><figcaption>作品 C · 原图局部</figcaption><img src="assets/readership-c.png" alt="作品C，原截图显示阅读5.7万" width="170" height="44" loading="lazy"></figure>
+          <figure class="evidence"><figcaption>作品 D · 原图局部</figcaption><img src="assets/readership-d.png" alt="作品D，原截图显示阅读5万" width="170" height="38" loading="lazy"></figure>
+          <p class="evidence-note">截图经过实际裁剪，仅保留阅读量区域；没有改写数字。为保护业务信息，不公开账号名、文章原标题、封面、完整正文或可回溯链接。不同迭代对话与这些作品不视为同一次运行记录。</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="contribution">
+      <div class="section-top"><span class="section-index">05</span><h2>我的贡献，不止于发出一个提示词。</h2></div>
+      <div class="contribution-grid">
+        <article class="contribution"><div class="label">DEFINE</div><h3>拆解业务问题</h3><p>识别重复劳动，明确任务输入、交付形式和人工审核位置，把宽泛需求变成具体流程。</p></article>
+        <article class="contribution"><div class="label">ITERATE</div><h3>用真实任务检验</h3><p>提供实际文案、定义修正报告要求，审阅 HTML 产物，并通过反馈推动输出靠近业务标准。</p></article>
+        <article class="contribution"><div class="label">STANDARDIZE</div><h3>推动规则复用</h3><p>将受众表达、固定排版和审校要求组织为规范，要求系统记录经过验收的正确做法。</p></article>
+      </div>
+      <div class="reflection"><h3>项目反思 / 自动化的边界同样需要设计</h3><p>品牌词表一致，不等于科学结论正确；系统说“完成”，也不等于交付物可用。我的下一步是把任务完成标准和效果测量进一步做实：记录人工耗时、返工情况与实际交付，而不是只看生成速度。</p></div>
+      <p class="scope-note">本案例重点呈现本人可说明的需求、规范与迭代贡献，不将机器人执行的文件修改表述为本人手写代码。底层编码分工、效率提升比例、运行成本与全天候稳定性不在当前成果声明内。</p>
+    </section>
+  </main>
+  <footer class="wrap">
+    <div class="footer-top"><span class="signature">Hongjing Xu</span><button class="print" id="print-page" type="button">打印 / 保存 PDF ↗</button></div>
+    <p class="privacy">本页面为求职展示用匿名案例：仅保留作者姓名，企业、公众号和对话参与者已匿名。未附原始聊天、内部文档、访问凭据或后台账号信息。页面无第三方脚本、字体和访问追踪；公开链接仍可被转发。</p>
+    <div class="footer-meta"><span>许泓景 · AI 应用实践</span><span>内容整理于 2026.10</span><span>DESIGNED AROUND HUMAN JUDGMENT</span></div>
+  </footer>
+  <script>
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    function activateTab(tab, focus = false) {
+      tabs.forEach(item => {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+        document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', event => {
+        let target;
+        if (event.key === 'ArrowRight') target = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') target = (index + tabs.length - 1) % tabs.length;
+        if (event.key === 'Home') target = 0;
+        if (event.key === 'End') target = tabs.length - 1;
+        if (target !== undefined) {
+          event.preventDefault();
+          activateTab(tabs[target], true);
+        }
+      });
+    });
+    const evidence = document.getElementById('evidence');
+    let evidenceWasOpen = false;
+    window.addEventListener('beforeprint', () => {
+      evidenceWasOpen = evidence.open;
+      evidence.open = true;
+    });
+    window.addEventListener('afterprint', () => { evidence.open = evidenceWasOpen; });
+    document.getElementById('print-page').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
