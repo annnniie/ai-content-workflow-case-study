@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1210" viewBox="0 0 1080 1210" role="img" aria-labelledby="title desc">
+  <title id="title">AI 内容生产与人审工作流：职责、交付物与返工路径</title>
+  <desc id="desc">三条泳道分别表示业务编辑、AI 与执行工具、人工审核与发布。编辑确定选题和读者，经飞书和自定义 Bridge 提交主题或文献；主题路径检索候选资料，文献路径整理已有材料，随后生成初稿、按参考 HTML 排版、保存草稿。编辑初审和第二位审核人复核后，人工决定是否发布；未通过则回到内容起草或排版。左侧为编辑维护的规则输入及流程边界。规则更新是独立的验收后迭代，不代表模型训练。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9" fill="#53705c"/></marker>
+    <marker id="back-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9" fill="#a16d3d"/></marker>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#20352e}
+      .lane{font-size:18px;font-weight:650}.meta{font-size:12px;fill:#657467;letter-spacing:1px}
+      .heading{font-size:18px;font-weight:650}.body{font-size:14px;fill:#53665b}.small{font-size:12px;fill:#657467}
+      .white{fill:#fff}.dim-white{fill:#deeadf}.edge{fill:none;stroke:#53705c;stroke-width:2;marker-end:url(#arrow)}
+      .feedback{fill:none;stroke:#a16d3d;stroke-width:2;stroke-dasharray:7 5;marker-end:url(#back-arrow)}
+      .input{fill:none;stroke:#95a78c;stroke-width:1.5;stroke-dasharray:3 5;marker-end:url(#arrow)}
+      .warm{fill:#835832}
+    </style>
+  </defs>
+  <rect width="1080" height="1210" rx="20" fill="#fff"/>
+  <text x="30" y="32" class="meta">CONTENT WORKFLOW / 从任务输入到人工发布</text>
+  <rect x="20" y="93" width="300" height="1065" rx="16" fill="#f5f7f1"/>
+  <rect x="345" y="93" width="385" height="1065" rx="16" fill="#f0f5ed"/>
+  <rect x="790" y="93" width="270" height="1065" rx="16" fill="#fbf5ee"/>
+  <text x="42" y="70" class="lane">业务编辑</text>
+  <text x="365" y="70" class="lane">AI + 执行工具</text>
+  <text x="808" y="70" class="lane">人工审核与发布</text>
+
+  <path class="edge" d="M290 166H375"/>
+  <path class="edge" d="M540 202V226H452V250"/>
+  <path class="edge" d="M540 226H627V250"/>
+  <path class="edge" d="M452 326V352H540V380"/>
+  <path class="edge" d="M627 326V352H540"/>
+  <path class="edge" d="M540 476V530"/>
+  <path class="edge" d="M540 626V680"/>
+  <path class="edge" d="M705 720H810"/>
+  <path class="edge" d="M925 760V800"/>
+  <path class="edge" d="M925 880V911"/>
+  <path class="edge" d="M925 999V1070"/>
+  <path class="feedback" d="M855 955H765V428H705"/>
+  <path class="feedback" d="M765 578H705"/>
+  <path class="input" d="M290 428H375"/>
+  <path class="input" d="M290 578H375"/>
+  <text x="317" y="152" class="small">提交</text>
+  <text x="739" y="706" class="small">交接</text>
+  <text x="939" y="1044" class="body">通过</text>
+  <rect x="772" y="929" width="70" height="23" rx="5" fill="#fff"/>
+  <text x="782" y="945" class="small warm">未通过</text>
+  <text x="732" y="415" class="small warm" text-anchor="middle">改稿</text>
+  <text x="733" y="563" class="small warm" text-anchor="middle">调格式</text>
+  <text x="553" y="507" class="small">交付：待审初稿</text>
+  <text x="553" y="657" class="small">交付：排版后的内容</text>
+
+  <rect x="50" y="130" width="240" height="72" rx="13" fill="#235e49"/>
+  <text x="67" y="158" class="heading white">01 明确任务与内容方向</text>
+  <text x="67" y="184" class="body dim-white">选题 / 目标读者 / 素材取舍</text>
+  <rect x="375" y="130" width="330" height="72" rx="13" fill="#fff" stroke="#c4d4bc"/>
+  <text x="393" y="158" class="heading">02 飞书 → 自定义 Bridge</text>
+  <text x="393" y="184" class="body">传递主题或材料，以及写作与排版要求</text>
+  <rect x="375" y="250" width="155" height="76" rx="12" fill="#fff" stroke="#c4d4bc"/>
+  <text x="390" y="278" class="heading">主题输入</text>
+  <text x="390" y="304" class="body">检索、汇总候选资料</text>
+  <rect x="550" y="250" width="155" height="76" rx="12" fill="#fff" stroke="#c4d4bc"/>
+  <text x="565" y="278" class="heading">文献输入</text>
+  <text x="565" y="304" class="body">整理已提供的材料</text>
+  <rect x="375" y="380" width="330" height="96" rx="13" fill="#fff" stroke="#c4d4bc"/>
+  <text x="393" y="411" class="heading">03 内容起草</text>
+  <text x="393" y="438" class="body">结合受众提示词与来源材料生成草稿</text>
+  <text x="393" y="459" class="small">研究边界、事实与表达留待人工核验</text>
+  <rect x="375" y="530" width="330" height="96" rx="13" fill="#fff" stroke="#c4d4bc"/>
+  <text x="393" y="561" class="heading">04 按固定模板排版</text>
+  <text x="393" y="588" class="body">沿用参考稿 HTML 骨架与固定尾部</text>
+  <text x="393" y="609" class="small">“只排版”任务不擅自修改已确定的原文</text>
+  <rect x="375" y="680" width="330" height="80" rx="13" fill="#235e49"/>
+  <text x="393" y="711" class="heading white">05 保存到公众号草稿箱</text>
+  <text x="393" y="739" class="body dim-white">自动执行交付点 · 尚未对外发布</text>
+  <rect x="810" y="680" width="230" height="80" rx="13" fill="#fff" stroke="#d2bfa4"/>
+  <text x="827" y="711" class="heading">06 编辑初审</text>
+  <text x="827" y="739" class="body">来源、逻辑、语气、审美与排版</text>
+  <rect x="810" y="800" width="230" height="80" rx="13" fill="#fff" stroke="#d2bfa4"/>
+  <text x="827" y="831" class="heading">07 第二位审核人复核</text>
+  <text x="827" y="859" class="body">事实与专业表述、发布风险</text>
+  <path d="M925 911L995 955L925 999L855 955Z" fill="#f1dfc7" stroke="#b99a73"/>
+  <text x="925" y="961" class="heading" text-anchor="middle">审核通过？</text>
+  <rect x="810" y="1070" width="230" height="70" rx="13" fill="#235e49"/>
+  <text x="827" y="1099" class="heading white">08 人工安排发布</text>
+  <text x="827" y="1124" class="body dim-white">发布决定与责任留在人手中</text>
+
+  <rect x="50" y="380" width="240" height="248" rx="13" fill="#fff" stroke="#d5dfcf"/>
+  <text x="68" y="409" class="heading">编辑维护的规则输入</text>
+  <text x="68" y="445" class="body">受众定位与语气规范</text>
+  <text x="68" y="473" class="body">研究材料与表达边界</text>
+  <path d="M68 495H272" stroke="#e0e6db"/>
+  <text x="68" y="525" class="body">已验收的参考稿 HTML</text>
+  <text x="68" y="553" class="body">固定版式、尾部与审校要求</text>
+  <text x="68" y="591" class="small">独立排版迭代中，人工验收后</text>
+  <text x="68" y="610" class="small">要求系统把正确做法记录为 Skill。</text>
+  <rect x="50" y="801" width="240" height="211" rx="13" fill="#fff" stroke="#d5dfcf"/>
+  <text x="68" y="833" class="heading">读图边界</text>
+  <text x="68" y="868" class="body">这是实际工作方式的逻辑概括，</text>
+  <text x="68" y="893" class="body">不是底层代码调用图。</text>
+  <text x="68" y="930" class="body">双重审核是流程约定，</text>
+  <text x="68" y="955" class="body">不等同于已核验的权限隔离。</text>
+  <text x="68" y="990" class="small">Skill 更新不是模型训练。</text>
+  <rect x="375" y="815" width="330" height="136" rx="13" fill="#e5ecdf"/>
+  <text x="393" y="845" class="heading">审校辅助：相邻的独立任务</text>
+  <text x="393" y="875" class="body">实际对话中形成了修正报告、改正稿</text>
+  <text x="393" y="899" class="body">与精修稿，帮助人定位问题。</text>
+  <text x="393" y="929" class="small">未将其画成每篇稿必经的自动审核节点。</text>
+  <text x="32" y="1189" class="small">实线：主交付路径　 ·　 棕色虚线：人工提出返工　 ·　 绿色点线：可复用规则输入</text>
+</svg>
